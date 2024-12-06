@@ -1,0 +1,136 @@
+wait(0.1)
+ 
+player = game.Players.PutYourNameHere
+workspacePlayer = game.Workspace.PutYourNameHere
+ 
+local ff = Instance.new("ForceField") --Creates forcefield
+ff.Parent = workspacePlayer
+ 
+workspacePlayer.Humanoid.WalkSpeed = 30
+ 
+local tool1 = Instance.new("HopperBin") --Gives the player a grab tool.
+tool1.Name = "Grab"
+tool1.Parent = player.Backpack 
+tool1.BinType = "Grab"
+print("Gave grab tool")
+ 
+local tool2 = Instance.new("HopperBin") --Gives the player a clone tool.
+tool2.Name = "Clone"
+tool2.Parent = player.Backpack
+tool2.BinType = "Clone"
+print("Gave clone tool")
+ 
+local tool3 = Instance.new("HopperBin") --Gives the player a destroy tool.
+tool3.Name = "Hammer"
+tool3.Parent = player.Backpack
+tool3.BinType = "Hammer"
+print("Gave delete tool")
+ 
+local tool4 = Instance.new("HopperBin") --Gives the player a tool where it spawns a part.
+tool4.Name = "New Part"
+tool4.Parent = player.Backpack
+tool4.BinType = "Script"
+print("Gave new part tool")
+ 
+local tool5 = Instance.new("HopperBin") --Gives the player a tool where it spawns a part.
+tool5.Name = "Paint"
+tool5.Parent = player.Backpack
+tool5.BinType = "Script"
+print("Gave paint tool")
+ 
+local tool6 = Instance.new("HopperBin") --Gives the player a tool where it spawns a part.
+tool6.Name = "Anchor"
+tool6.Parent = player.Backpack
+tool6.BinType = "Script"
+print("Gave anchor tool")
+ 
+local tool7 = Instance.new("HopperBin") --Gives the player a tool where it spawns a part.
+tool7.Name = "Un-Anchor"
+tool7.Parent = player.Backpack
+tool7.BinType = "Script"
+print("Gave un-anchor tool")
+ 
+local tool8 = Instance.new("HopperBin") --Gives the player a tool where it spawns a part.
+tool8.Name = "Lock"
+tool8.Parent = player.Backpack
+tool8.BinType = "Script"
+print("Gave lock tool")
+ 
+local tool9 = Instance.new("HopperBin") --Gives the player a tool where it spawns a part.
+tool9.Name = "Unlock"
+tool9.Parent = player.Backpack
+tool9.BinType = "Script"
+print("Gave unlock tool")
+ 
+playerMouse = game.Players.LocalPlayer:GetMouse()
+ 
+ 
+--Functions--
+function lock()
+	playerMouse.Target.Locked = true
+	print("Locked "..playerMouse.Target.Name)
+end
+ 
+function unlock()
+	playerMouse.Target.Locked = false
+	print("Unlocked "..playerMouse.Target.Name)
+end
+ 
+function anchor()
+		playerMouse.Target.Anchored = true
+		print("Anchored "..playerMouse.Target.Name)
+end
+ 
+function unanchor()
+		playerMouse.Target.Anchored = false
+		print("Un-anchored "..playerMouse.Target.Name)
+end
+ 
+function paint()
+	playerMouse.Target.BrickColor = BrickColor.Random()
+end
+ 
+function create(mouse)
+	local part = Instance.new("Part")
+	part.Parent = game.Workspace
+	part.Position = player.Head.Position
+	part.Anchored = true
+	part.Locked = false
+	print("Created a new part.")
+end
+ 
+------------------------
+ 
+--Events-
+ 
+tool4.Selected:connect(function(mouse) 
+	print("Selected.")
+	mouse.Button1Down:connect(create)
+end)
+ 
+tool5.Selected:connect(function(mouse)
+	print("Selected.")
+	mouse.Button1Down:connect(paint)
+end)
+ 
+tool6.Selected:connect(function(mouse)
+	print("Selected.")
+	mouse.Button1Down:connect(anchor)
+end)
+ 
+tool7.Selected:connect(function(mouse)
+	print("Selected.")
+	mouse.Button1Down:connect(unanchor)
+end)
+ 
+tool8.Selected:connect(function(mouse)
+	print("Selected.")
+	mouse.Button1Down:connect(lock)
+end)
+ 
+tool9.Selected:connect(function(mouse)
+	print("Selected.")
+	mouse.Button1Down:connect(unlock)
+end)
+ 
+print("Gave tools to "..player.Name..".")
